@@ -160,6 +160,11 @@
 	backgroundView.backgroundColor = [UIColor clearColor];
 	backgroundView.delegate = self;
 	
+  UIView *dimmedView = [[UIView alloc] initWithFrame:backgroundView.bounds];
+  dimmedView.backgroundColor = [UIColor blackColor];
+  dimmedView.alpha = 0.2;
+  [backgroundView addSubview:dimmedView];
+  
 	[keyView addSubview:backgroundView];
 	
 	containerView.frame = [theView convertRect:containerView.frame toView:backgroundView];
