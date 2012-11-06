@@ -10,7 +10,7 @@
 #import "WEPopoverParentView.h"
 #import "UIBarButtonItem+WEPopover.h"
 
-#define FADE_DURATION 0.3
+#define FADE_DURATION 0.2
 
 @interface WEPopoverController(Private)
 
@@ -184,7 +184,7 @@
 	[self.view becomeFirstResponder];
 	popoverVisible = YES;
 	if (animated) {
-		self.view.alpha = 0.0;
+		self.view.alpha = 0.5;
         
         [UIView animateWithDuration:FADE_DURATION
                               delay:0.0
@@ -197,6 +197,8 @@
                              
                              [self animationDidStop:@"FadeIn" finished:[NSNumber numberWithBool:finished] context:nil];
                          }];
+    self.contentViewController.view.alpha = 0.0;
+          [UIView animateWithDuration:0.3 animations:^(void){self.contentViewController.view.alpha = 1.0;}];
         		
 	} else {
         if ([self forwardAppearanceMethods]) {
@@ -324,7 +326,7 @@
                                  [self animationDidStop:@"FadeOut" finished:[NSNumber numberWithBool:finished] context:[NSNumber numberWithBool:userInitiated]];
                              }];
 
-            
+      [UIView animateWithDuration:0.08 animations:^(void){self.contentViewController.view.alpha = 0.0;}];
 		} else {
             if ([self forwardAppearanceMethods]) {
                 [contentViewController viewDidDisappear:animated];
