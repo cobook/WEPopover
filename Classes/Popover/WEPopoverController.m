@@ -351,39 +351,34 @@
 
 //Enable to use the simple popover style
 - (WEPopoverContainerViewProperties *)defaultContainerViewProperties {
-	WEPopoverContainerViewProperties *ret = [[WEPopoverContainerViewProperties new] autorelease];
-	CGSize imageSize;
-  NSString *bgImageName;
-  if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
-    imageSize = CGSizeMake(62.0f, 62.0f);
-    bgImageName = @"popoverBgSimple@2x.png";
-  }else
-  {
-     imageSize = CGSizeMake(30.0f, 30.0f);
-     bgImageName = @"popoverBgSimple.png";
-  }
+	WEPopoverContainerViewProperties *props = [[WEPopoverContainerViewProperties new] autorelease];
+	NSString *bgImageName = nil;
+	CGFloat bgMargin = 0.0;
+	CGFloat bgCapSize = 0.0;
+	CGFloat contentMargin = 4.0;
 	
-	CGFloat bgMargin = 6.0;
-	CGFloat contentMargin = 2.0;
+	bgImageName = @"popoverBg.png";
 	
-	ret.leftBgMargin = bgMargin;
-	ret.rightBgMargin = bgMargin;
-	ret.topBgMargin = bgMargin;
-	ret.bottomBgMargin = bgMargin;
-	ret.leftBgCapSize = imageSize.width/2;
-	ret.topBgCapSize = imageSize.height/2;
-	ret.bgImageName = bgImageName;
-	ret.leftContentMargin = contentMargin;
-	ret.rightContentMargin = contentMargin;
-	ret.topContentMargin = contentMargin;
-	ret.bottomContentMargin = contentMargin;
-	ret.arrowMargin = 1.0;
+	// These constants are determined by the popoverBg.png image file and are image dependent
+	bgMargin = 7; // margin width of 13 pixels on all sides popoverBg.png (62 pixels wide - 36 pixel background) / 2 == 26 / 2 == 13
+	bgCapSize = 15; // ImageSize/2  == 62 / 2 == 31 pixels
 	
-	ret.upArrowImageName = @"popoverArrowUpSimple.png";
-	ret.downArrowImageName = @"popoverArrowDownSimple.png";
-	ret.leftArrowImageName = @"popoverArrowLeftSimple.png";
-	ret.rightArrowImageName = @"popoverArrowRightSimple.png";
-	return ret;
+	props.leftBgMargin = bgMargin;
+	props.rightBgMargin = bgMargin;
+	props.topBgMargin = bgMargin-1;
+	props.bottomBgMargin = bgMargin;
+	props.leftBgCapSize = bgCapSize;
+	props.topBgCapSize = bgCapSize;
+	props.bgImageName = bgImageName;
+	props.leftContentMargin = contentMargin;
+	props.rightContentMargin = contentMargin - 1; // Need to shift one pixel for border to look correct
+	props.topContentMargin = contentMargin;
+	props.bottomContentMargin = contentMargin;
+	
+	props.arrowMargin = 6.0;
+	
+	props.upArrowImageName = @"popoverArrowUp.png";
+  return props;
 }
 
 @end
