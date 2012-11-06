@@ -347,9 +347,17 @@
 //Enable to use the simple popover style
 - (WEPopoverContainerViewProperties *)defaultContainerViewProperties {
 	WEPopoverContainerViewProperties *ret = [[WEPopoverContainerViewProperties new] autorelease];
+	CGSize imageSize;
+  NSString *bgImageName;
+  if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+    imageSize = CGSizeMake(62.0f, 62.0f);
+    bgImageName = @"popoverBgSimple@2x.png";
+  }else
+  {
+     imageSize = CGSizeMake(30.0f, 30.0f);
+     bgImageName = @"popoverBgSimple.png";
+  }
 	
-	CGSize imageSize = CGSizeMake(30.0f, 30.0f);
-	NSString *bgImageName = @"popoverBgSimple.png";
 	CGFloat bgMargin = 6.0;
 	CGFloat contentMargin = 2.0;
 	

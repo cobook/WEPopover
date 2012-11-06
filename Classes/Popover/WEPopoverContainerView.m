@@ -186,7 +186,7 @@ permittedArrowDirections:(UIPopoverArrowDirection)permittedArrowDirections
 					anchorPoint = CGPointMake(CGRectGetMidX(anchorRect) - displayArea.origin.x, CGRectGetMaxY(anchorRect) - displayArea.origin.y);
                     
                 	xArrowOffset = theSize.width / 2 - upArrowImage.size.width / 2;
-					yArrowOffset = properties.topBgMargin - upArrowImage.size.height;
+					yArrowOffset = properties.topBgMargin - upArrowImage.size.height + 2;
 					
 					theOffset = CGPointMake(anchorPoint.x - xArrowOffset - upArrowImage.size.width / 2, anchorPoint.y  - yArrowOffset);
 					
@@ -202,7 +202,7 @@ permittedArrowDirections:(UIPopoverArrowDirection)permittedArrowDirections
 					xArrowOffset = MAX(xArrowOffset, properties.leftBgMargin + properties.arrowMargin);
 					xArrowOffset = MIN(xArrowOffset, theSize.width - properties.rightBgMargin - properties.arrowMargin - upArrowImage.size.width);
 					
-					theArrowRect = CGRectMake(xArrowOffset, yArrowOffset, upArrowImage.size.width, upArrowImage.size.height);
+					theArrowRect = CGRectMake(xArrowOffset-14, yArrowOffset, upArrowImage.size.width, upArrowImage.size.height);
 					
 					break;
 				case UIPopoverArrowDirectionDown:
